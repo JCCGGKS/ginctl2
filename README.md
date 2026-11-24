@@ -7,17 +7,20 @@ layers for your own storage.
 
 ## Create a new project
 
-Initialize a fresh project directory from this scaffold:
+Use the [gincli](https://github.com/JCCGGKS/gincli) scaffolder, which fetches
+this skeleton from GitHub and initializes a new service:
 
 ```bash
-./scripts/init-project.sh ../order-service github.com/acme/order-service order-service order_service
+git clone https://github.com/JCCGGKS/gincli.git
+cd gincli
+./init.sh ../order-service github.com/acme/order-service order-service order_service
 ```
 
 Arguments are `<target-dir> [module-path] [service-name] [db-name]`; missing
-values are derived from the target directory name. The script copies tracked
-files only, rewrites the Go module/import paths, service name, binary name, and
-database names, initializes a Git repository, and runs `go build ./...`.
-Pass `--no-git` to skip repository initialization.
+values are derived from the target directory name. The script downloads the
+skeleton, rewrites the Go module/import paths, service and database names,
+initializes a Git repository, and runs `go build ./...`. Pass `--no-git` or
+`--no-build` to skip those steps.
 
 ## What it includes
 
@@ -84,15 +87,6 @@ Then start the service:
 go run .                           # defaults to etc/config_dev.yaml
 go run . -f etc/config_test.yaml
 go run . -f etc/config_prod.yaml   # requires AUTH_JWTSECRET (>=32 bytes)
-```
-
-Or use the local lifecycle script:
-
-```bash
-./scripts/start.sh                 # build and start dev in the background
-./scripts/start.sh restart test    # restart with etc/config_test.yaml
-./scripts/start.sh status
-./scripts/start.sh stop
 ```
 
 ## Config file & gin mode

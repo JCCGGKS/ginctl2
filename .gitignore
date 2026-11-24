@@ -31,10 +31,6 @@ etc/config_local.yaml
 # Runtime logs
 logs/
 
-# Local script artifacts
-scripts/bin/
-scripts/run/
-
 # Editor/IDE
 # .idea/
 # .vscode/
